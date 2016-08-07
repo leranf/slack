@@ -1,0 +1,53 @@
+button {
+  position: relative;
+  left: 50%;
+  margin-left: -53px;
+}
+
+img {
+  width: 200px;
+  height: 200px;
+}
+
+#lightbox {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, .8);
+}
+
+#lightbox_table {
+  width:100%;
+  height:100%;
+}
+
+#lightbox_table img {
+  width:100%;
+  height: 80%;
+}
+
+#lightbox_table #previous {
+  display: inline;
+  position: relative;
+  left: 0;
+}
+
+#lightbox_table #next {
+  display: inline;
+  position: relative;
+  right: 0;
+}
+
+#lightbox_table_cell {
+  vertical-align:middle;
+}
+
+#lightbox_content {
+  width: 300px;
+  border: 5px solid black; 
+}
+
+
