@@ -7,11 +7,8 @@ document.querySelector('#search').addEventListener('click', function() {
   httpRequest.send(null);
 });
 
-var photoUrls = {
-  row_1: [],
-  row_2: [],
-  row_3: [],
-};
+var photoUrls = [ [], [], [] ];
+var gridPosition;
 
 function renderImages() {
   if (httpRequest.readyState === 4) {
@@ -19,14 +16,14 @@ function renderImages() {
       document.querySelector('#images').innerHTML = '';
       var results = JSON.parse(httpRequest.responseText.slice(14).slice(0,-1)).photoset.photo;
       var count = 0;
-      var currentRow = 1;
+      var currentRow = 0;
       
       results.forEach(function(result) {
         if (count < 6) {
-          photoUrls[`row_${currentRow}`].push(`https://farm${result.farm}.staticflickr.com/${result.server}/${result.id}_${result.secret}.jpg`);
+          photoUrls[currentRow].push(`https://farm${result.farm}.staticflickr.com/${result.server}/${result.id}_${result.secret}.jpg`);
           count++;
         } else {
-          photoUrls[`row_${++currentRow}`].push(`https://farm${result.farm}.staticflickr.com/${result.server}/${result.id}_${result.secret}.jpg`);
+          photoUrls[++currentRow].push(`https://farm${result.farm}.staticflickr.com/${result.server}/${result.id}_${result.secret}.jpg`);
           count = 1;
         }
       });
@@ -34,9 +31,9 @@ function renderImages() {
       if ('content' in document.createElement('template')) {
         var t = document.querySelector('#imageRow');
         var td = t.content.querySelectorAll('td');
-        Object.keys(photoUrls).forEach(function(row) {
-          photoUrls[row].forEach(function(url, i) {
-            td[i].innerHTML = `<img id='${row}.${i}' src='${url}'>`;
+        photoUrls.forEach(function(row, rowIndex) {
+          row.forEach(function(url, columnIndex) {
+            td[columnIndex].innerHTML = `<img id='${rowIndex}_${columnIndex}' class='flickrImage' src='${url}'>`;
           });
           var table = document.querySelector('#images');
           var clone = document.importNode(t.content, true);
@@ -44,9 +41,10 @@ function renderImages() {
         });
       }
       
-      document.querySelectorAll('img').forEach(function(image) {
+      document.querySelectorAll('.flickrImage').forEach(function(image) {
         image.addEventListener('click', function() {
-          document.querySelector('#selectedImage').src = image.src;
+          gridPosition = image.id.split('_');
+          updateSelectedImage(image);
           document.querySelector('#lightbox').style.display = 'inline';
         });
       });
@@ -54,14 +52,37 @@ function renderImages() {
   }
 }
 
-document.querySelector('#lightbox').addEventListener('click', function() {
-  this.style.display = 'none';
+function updateSelectedImage(newSelectedImage) {
+  document.querySelector('.selectedImage').src = newSelectedImage.src;
+  document.querySelector('.selectedImage').id = newSelectedImage.id;
+}
+
+document.querySelector('.selectedImage').addEventListener('click', function() {
+  document.querySelector('#lightbox').style.display = 'none';
 });
 
 document.querySelector('#previous').addEventListener('click', function() {
-
+  if (Number(gridPosition[1]) > 0) {
+    gridPosition[1] = String(Number(gridPosition[1] - 1));
+    updateSelectedImage(document.getElementById(gridPosition.join('_')));
+  } else {
+    if (Number(gridPosition[0]) > 0) {
+      gridPosition[0] = `${Number(gridPosition[0] - 1)}`;
+      gridPosition[1] = '5';
+      updateSelectedImage(document.getElementById(gridPosition.join('_')));
+    }
+  }
 });
 
 document.querySelector('#next').addEventListener('click', function() {
-
+  if (Number(gridPosition[1]) < 5) {
+    gridPosition[1] = String(Number(gridPosition[1]) + 1);
+    updateSelectedImage(document.getElementById(gridPosition.join('_')));
+  } else {
+    if (Number(gridPosition[0]) < 2) {
+      gridPosition[0] = `${Number(gridPosition[0]) + 1}`;
+      gridPosition[1] = '0';
+      updateSelectedImage(document.getElementById(gridPosition.join('_')));
+    }
+  }
 });
