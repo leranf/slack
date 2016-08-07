@@ -1,28 +1,43 @@
-<!doctype html>
+<!DOCTYPE html>
 
-<html lang="en">
+<html lang='en'>
 <head>
-  <meta charset="utf-8">
+  <meta charset='utf-8'>
   <title>Slack Challenge</title>
-  <link rel="stylesheet" href="styles.css">
+  <link rel='stylesheet' href='styles.css'>
 </head>
 
 <body>
-  <script src="script.js"></script>
-  <div></div>
-  <script>
-  (function() {
-    var cx = '000342256338531615967:eibvbuf-kqk';
-    var gcse = document.createElement('script');
-    gcse.type = 'text/javascript';
-    gcse.async = true;
-    gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
-    var s = document.getElementsByTagName('script')[0];
-    s.parentNode.insertBefore(gcse, s);
-  })();
-  </script>
-  <gcse:search></gcse:search>
-  <div></div>
-  
+  <div id='lightbox' class='lightbox'>
+    <table id='lightbox_table'>
+      <tr>
+        <td id='lightbox_table_cell' align='center'>
+          <div id='lightbox_content'>
+            <button id='previous'>Previous</button>
+            <button id='next'>Next</button>
+            <img id='selectedImage' src='' />
+          </div>
+        </td>
+      </tr>
+    </table>
+  </div>
+
+  <button id='search'>Search Flickr Photos</button>
+  <table id='images' class='lightbox'></table>
+
+  <template id='imageRow'>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+  </template>
+
+  <script type='text/javascript' src='config.js'></script>
+  <script type='text/javascript' src='script.js'></script>
+ 
 </body>
 </html>
