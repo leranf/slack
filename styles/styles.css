@@ -1,12 +1,19 @@
-button {
+#search {
   position: relative;
   left: 50%;
   margin-left: -53px;
 }
 
-.flickrImage {
-  width: 200px;
-  height: 200px;
+#images {
+  margin-left: 5px;
+  margin-right: 5px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.flickr_image {
+  width: 205px;
+  height: 195px;
 }
 
 #lightbox {
@@ -29,18 +36,6 @@ button {
   height: 80%;
 }
 
-#lightbox_table #previous {
-  display: inline;
-  position: relative;
-  left: 0;
-}
-
-#lightbox_table #next {
-  display: inline;
-  position: relative;
-  right: 0;
-}
-
 #lightbox_table_cell {
   vertical-align:middle;
 }
@@ -49,5 +44,3 @@ button {
   width: 300px;
   border: 5px solid black; 
 }
-
-

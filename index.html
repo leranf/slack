@@ -4,7 +4,7 @@
 <head>
   <meta charset='utf-8'>
   <title>Slack Challenge</title>
-  <link rel='stylesheet' href='styles.css'>
+  <link rel='stylesheet' href='styles/styles.css'>
 </head>
 
 <body>
@@ -15,7 +15,7 @@
           <div id='lightbox_content'>
             <button id='previous'>Previous</button>
             <button id='next'>Next</button>
-            <img class='selectedImage' src=''></div>
+            <img class='selected_image' src=''></div>
           </div>
         </td>
       </tr>
@@ -25,7 +25,7 @@
   <button id='search'>Search Flickr Photos</button>
   <table id='images'></table>
 
-  <template id='imageRow'>
+  <template id='image_row'>
     <tr>
       <td></td>
       <td></td>
@@ -36,8 +36,9 @@
     </tr>
   </template>
 
-  <script type='text/javascript' src='config.js'></script>
-  <script type='text/javascript' src='script.js'></script>
+  <script type='text/javascript' src='config/config.js'></script>
+  <script type='text/javascript' src='scripts/main.js'></script>
+  <script type='text/javascript' src='scripts/eventListeners.js'></script>
  
 </body>
 </html>
