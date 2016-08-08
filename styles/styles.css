@@ -40,6 +40,10 @@ body {
   height: 80%;
 }
 
+#lightbox_table p {
+  color: white;
+}
+
 #lightbox_table_cell {
   vertical-align:middle;
 }
