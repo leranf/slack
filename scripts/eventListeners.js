@@ -3,6 +3,7 @@ document.querySelector('#search').addEventListener('click', function() {
   httpRequest.onreadystatechange = renderImages;
   httpRequest.open('GET', `https://api.flickr.com/services/rest?api_key=${API_KEY}&method=flickr.photosets.getPhotos&user_id=${USER_ID}&photoset_id=72157671032461750&format=json&per_page=18`);
   httpRequest.send(null);
+  document.querySelector('#search').style.display = 'none';
 });
 
 document.querySelector('.selected_image').addEventListener('click', function() {
