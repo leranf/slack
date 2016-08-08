@@ -28,10 +28,9 @@ function renderImages() {
       if ('content' in document.createElement('template')) {
         var t = document.querySelector('#image_row');
         var td = t.content.querySelectorAll('td');
-        console.log('from template', td);
         photoInfo.forEach(function(row, rowIndex) {
           row.forEach(function(item, columnIndex) {
-            td[columnIndex].innerHTML = `<img id='${rowIndex}_${columnIndex}_${item.title}' class='flickr_image' src='${item.url}'>`;
+            td[columnIndex].innerHTML = `<img id='${rowIndex}_${columnIndex}' class='flickr_image' src='${item.url}' alt='${item.title}'>`;
           });
           var table = document.querySelector('#images');
           var clone = document.importNode(t.content, true);
@@ -49,5 +48,5 @@ function renderImages() {
 function updateSelectedImage(newSelectedImage) {
   document.querySelector('.selected_image').src = newSelectedImage.src;
   document.querySelector('.selected_image').id = newSelectedImage.id;
-  document.querySelector('.title').innerHTML = newSelectedImage.id.split('_')[2];
+  document.querySelector('.title').innerHTML = newSelectedImage.alt;
 }
