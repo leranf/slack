@@ -1,5 +1,5 @@
 var httpRequest;
-var photoUrls = [ [], [], [] ];
+var photoInfo = [ [], [], [] ];
 var gridPosition;
 
 function renderImages() {
@@ -11,10 +11,16 @@ function renderImages() {
       
       results.forEach(function(result) {
         if (count < 6) {
-          photoUrls[currentRow].push(`https://farm${result.farm}.staticflickr.com/${result.server}/${result.id}_${result.secret}.jpg`);
+          photoInfo[currentRow].push({
+            url: `https://farm${result.farm}.staticflickr.com/${result.server}/${result.id}_${result.secret}.jpg`,
+            title: result.title
+          });
           count++;
         } else {
-          photoUrls[++currentRow].push(`https://farm${result.farm}.staticflickr.com/${result.server}/${result.id}_${result.secret}.jpg`);
+          photoInfo[++currentRow].push({
+            url: `https://farm${result.farm}.staticflickr.com/${result.server}/${result.id}_${result.secret}.jpg`,
+            title: result.title
+          });
           count = 1;
         }
       });
@@ -23,9 +29,9 @@ function renderImages() {
         var t = document.querySelector('#image_row');
         var td = t.content.querySelectorAll('td');
         console.log('from template', td);
-        photoUrls.forEach(function(row, rowIndex) {
-          row.forEach(function(url, columnIndex) {
-            td[columnIndex].innerHTML = `<img id='${rowIndex}_${columnIndex}' class='flickr_image' src='${url}'>`;
+        photoInfo.forEach(function(row, rowIndex) {
+          row.forEach(function(item, columnIndex) {
+            td[columnIndex].innerHTML = `<img id='${rowIndex}_${columnIndex}_${item.title}' class='flickr_image' src='${item.url}'>`;
           });
           var table = document.querySelector('#images');
           var clone = document.importNode(t.content, true);
@@ -43,4 +49,5 @@ function renderImages() {
 function updateSelectedImage(newSelectedImage) {
   document.querySelector('.selected_image').src = newSelectedImage.src;
   document.querySelector('.selected_image').id = newSelectedImage.id;
+  document.querySelector('.title').innerHTML = newSelectedImage.id.split('_')[2];
 }
