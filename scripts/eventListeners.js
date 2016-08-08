@@ -54,8 +54,13 @@ function addThumbnailImageEventListener(image) {
     document.querySelector('#lightbox').style.display = 'inline';
     if (gridPosition[0] === '0' && gridPosition[1] === '0') {
       document.querySelector('#previous').style.display = 'none';
+      document.querySelector('#next').style.display = 'inline';
     } else if (gridPosition[0] === '2' && gridPosition[1] === '5') {
+      document.querySelector('#previous').style.display = 'inline';
       document.querySelector('#next').style.display = 'none';
+    } else {
+      document.querySelector('#previous').style.display = 'inline';
+      document.querySelector('#next').style.display = 'inline';
     }
   });
 }
