@@ -9,6 +9,9 @@ The UI is responsive. As the vertical view gets smaller, elements are moved to t
 ## Run
 
 Fork and clone the repo
+
 Add a config/config.js file with your flickr API_KEY and USER_ID
+
 In scripts/eventListeners.js change the PHOTOSET_ID to an album id from your account 
+
 Open the index.html file in your favorite browser
