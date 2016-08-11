@@ -2,19 +2,24 @@ body {
   background-image: url('../assets/flickr.png');
 }
 
+li {
+  display: inline;
+  margin: 0 2px;
+}
+
 #search {
   position: relative;
   left: 50%;
-  margin-left: -53px;
+  margin-left: -125px;
+  width: 250px;
+  font-size: xx-large;
 }
 
 #images {
   width: 100%;
-  height: 100%
-  margin-left: 5px;
-  margin-right: 5px;
-  margin-top: 20px;
-  margin-bottom: 20px;
+  height: 100%;
+  padding: 0;
+  margin: 25px 5px;
 }
 
 .flickr_image {
