@@ -11,52 +11,35 @@ document.querySelector('.selected_image').addEventListener('click', function() {
 });
 
 document.querySelector('#previous').addEventListener('click', function() {
-  if (gridPosition[0] === '2' && gridPosition[1] === '5') {
+  var selectedId = document.querySelector('.selected_image').id;
+  if (selectedId === String(photoInfo.length - 1)) {
     document.querySelector('#next').style.display = 'inline';
+  } else if (selectedId === '1') {
+    document.querySelector('#previous').style.display = 'none';
   }
-  if (Number(gridPosition[1]) > 0) {
-    gridPosition[1] = String(Number(gridPosition[1] - 1));
-    updateSelectedImage(document.getElementById(gridPosition.join('_')));
-    if (gridPosition[0] === '0' && gridPosition[1] === '0') {
-      document.querySelector('#previous').style.display = 'none';
-    }
-  } else {
-    if (Number(gridPosition[0]) > 0) {
-      gridPosition[0] = `${Number(gridPosition[0] - 1)}`;
-      gridPosition[1] = '5';
-      updateSelectedImage(document.getElementById(gridPosition.join('_')));
-    }
-  }
+  var newSelectedId = Number(selectedId) - 1;
+  updateSelectedImage(document.getElementById(String(newSelectedId)));
 });
 
 document.querySelector('#next').addEventListener('click', function() {
-  if (gridPosition[0] === '0' && gridPosition[1] === '0') {
+  var selectedId = document.querySelector('.selected_image').id;
+  if (selectedId === '0') {
     document.querySelector('#previous').style.display = 'inline';
+  } else if (selectedId === String(photoInfo.length - 2)) {
+    document.querySelector('#next').style.display = 'none';
   }
-  if (Number(gridPosition[1]) < 5) {
-    gridPosition[1] = String(Number(gridPosition[1]) + 1);
-    updateSelectedImage(document.getElementById(gridPosition.join('_')));
-    if (gridPosition[0] === '2' && gridPosition[1] === '5') {
-      document.querySelector('#next').style.display = 'none';
-    }
-  } else {
-    if (Number(gridPosition[0]) < 2) {
-      gridPosition[0] = `${Number(gridPosition[0]) + 1}`;
-      gridPosition[1] = '0';
-      updateSelectedImage(document.getElementById(gridPosition.join('_')));
-    }
-  }
+  var newSelectedId = Number(selectedId) + 1;
+  updateSelectedImage(document.getElementById(String(newSelectedId)));
 });
 
 function addThumbnailImageEventListener(image) {
   image.addEventListener('click', function() {
-    gridPosition = image.id.split('_');
     updateSelectedImage(image);
     document.querySelector('#lightbox').style.display = 'inline';
-    if (gridPosition[0] === '0' && gridPosition[1] === '0') {
+    if (image.id === '0') {
       document.querySelector('#previous').style.display = 'none';
       document.querySelector('#next').style.display = 'inline';
-    } else if (gridPosition[0] === '2' && gridPosition[1] === '5') {
+    } else if (image.id === String(photoInfo.length - 1)) {
       document.querySelector('#previous').style.display = 'inline';
       document.querySelector('#next').style.display = 'none';
     } else {
