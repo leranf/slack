@@ -1,10 +1,8 @@
 {
   "name": "slack challenge",
-  "description": "An app that displays a grid of images from Google Image Search. When a thumbnail is clicked it is displayed in a lightbox view",
+  "description": "An app that displays a grid of images from Flickr. When a thumbnail is clicked it is displayed in a lightbox view",
   "main": "index.js",
-  "dependencies": {
-    "require": "^2.4.20"
-  },
+  "dependencies": {},
   "repository": {
     "type": "git",
     "url": "https://github.com/leranf/slack"
